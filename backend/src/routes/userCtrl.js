@@ -32,7 +32,7 @@ router.post('/userLogin', async (req, res) => {
         if(!user){
             return res.status(404).send({status: false, message: 'User not found'})
         }
-        res.status(200).send({status: true, message: 'User Logged In Successfully'})
+        res.status(200).send({status: true, message: 'User Logged In Successfully', data: user})
     }
     catch (error) {
         res.send(500).json({status: false, message: error.message})
@@ -42,7 +42,7 @@ router.post('/userLogin', async (req, res) => {
 
 router.delete('/userDelete', async (req, res) => {
     try {
-        const userEmail = req.body;
+        const userEmail = req.body.email;
         if(!userEmail){
             return res.status(400).send({status: false, message: 'Please Login first'})
         }
@@ -50,7 +50,7 @@ router.delete('/userDelete', async (req, res) => {
         if(!user){
             return res.status(404).send({status: false, message: 'User not found'})
         }
-        res.status(200).send({status: true, message: 'User Deleted Successfully'})
+        res.status(200).send({status: true, message: 'User Deleted Successfully', data: user})
     }
      catch (error) {
         res.send(500).json({ status: false, message: error.message })
